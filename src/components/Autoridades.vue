@@ -2,7 +2,7 @@
 	<v-container pading>
 	<!-- <v-form @submit="onSubmit"> -->
 		
-            <h2>Autoridades</h2>
+            <h2>Autoridades en localStorage</h2>
 			<v-row>
 				<v-col cols="12" md="3">
 					<v-text-field
@@ -50,6 +50,11 @@
                     :items-per-page="5"
                     class="elevation-1"
                     >
+                    
+                    <template v-slot:item.actions="{ item }">                        
+                        <v-icon small @click="eliminarAutoridad(item)">mdi-delete</v-icon>
+                    </template>
+                    
                 </v-data-table>	
                 </v-card>
                 </v-flex>
@@ -70,10 +75,11 @@
                 apellido: "",
                 cargo: ""                
             },
-            headers: [
-            { text: 'Cargo', value: 'cargos.nombre' },           
-            { text: 'Nombre', value: 'nombre' },
-            { text: 'Apellido', value: 'apellido' },                    
+            headers: [                      
+            { text: 'NOMBRE', value: 'nombre' },
+            { text: 'APELLIDO', value: 'apellido' },  
+            { text: 'CARGO', value: 'cargo' }, 
+            { text: "ACCIONES", value: "actions", sortable: false },                 
             ],
             autoridades: [],
             cargos: []
